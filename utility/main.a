@@ -1,0 +1,101 @@
+equ keyboard #3FF9
+equ tiledata #4000
+equ palettedata #5000
+
+org #8000
+label main
+
+ldai #00
+sta #5000
+ldai #44
+sta #5001
+ldai #aa
+sta #5002
+ldai #fe
+sta #5003
+ldai #01
+sta #5080
+
+ldai #00
+pua
+label vram_load
+poa
+ldbo #E000
+stbo tiledata
+addi #01
+pua
+cmpi #1F
+je vram_load_finished
+jmp vram_load
+
+label vram_load_finished
+ldai #80
+wsr
+
+
+
+org #E000
+byte #7c #c2 #c2 #fe #c2 #c2 #c2 #0 #7c #c2 #c2 #fe #c2 #c2 #c2 #0
+byte #fc #c2 #c2 #fc #c2 #c2 #fc #0 #fc #c2 #c2 #fc #c2 #c2 #fc #0
+byte #7c #c2 #c0 #c0 #c0 #c2 #7c #0 #7c #c2 #c0 #c0 #c0 #c2 #7c #0
+byte #fc #c2 #c2 #c2 #c2 #c2 #fc #0 #fc #c2 #c2 #c2 #c2 #c2 #fc #0
+byte #fe #c0 #c0 #f0 #c0 #c0 #fe #0 #fe #c0 #c0 #f0 #c0 #c0 #fe #0
+byte #fe #c0 #c0 #f0 #c0 #c0 #c0 #0 #fe #c0 #c0 #f0 #c0 #c0 #c0 #0
+byte #7c #c2 #c0 #de #c2 #c2 #7c #0 #7c #c2 #c0 #de #c2 #c2 #7c #0
+byte #c2 #c2 #c2 #fe #c2 #c2 #c2 #0 #c2 #c2 #c2 #fe #c2 #c2 #c2 #0
+byte #fe #30 #30 #30 #30 #30 #fe #0 #fe #30 #30 #30 #30 #30 #fe #0
+byte #fe #c #c #c #8c #8c #78 #0 #fe #c #c #c #8c #8c #78 #0
+byte #c2 #c2 #c2 #fc #c2 #c2 #c2 #0 #c2 #c2 #c2 #fc #c2 #c2 #c2 #0
+byte #c0 #c0 #c0 #c0 #c0 #c0 #fe #0 #c0 #c0 #c0 #c0 #c0 #c0 #fe #0
+byte #e6 #e6 #da #da #c2 #c2 #c2 #0 #e6 #e6 #da #da #c2 #c2 #c2 #0
+byte #e2 #e2 #d2 #d2 #ca #ca #c6 #0 #e2 #e2 #d2 #d2 #ca #ca #c6 #0
+byte #7c #c2 #c2 #c2 #c2 #c2 #7c #0 #7c #c2 #c2 #c2 #c2 #c2 #7c #0
+byte #fc #c2 #c2 #c2 #fc #c0 #c0 #0 #fc #c2 #c2 #c2 #fc #c0 #c0 #0
+byte #7c #c2 #c2 #c2 #c2 #c4 #7e #0 #7c #c2 #c2 #c2 #c2 #c4 #7e #0
+byte #fc #c2 #c2 #c2 #fc #c2 #c2 #0 #fc #c2 #c2 #c2 #fc #c2 #c2 #0
+byte #7c #c2 #c0 #7c #2 #c2 #7c #0 #7c #c2 #c0 #7c #2 #c2 #7c #0
+byte #fe #30 #30 #30 #30 #30 #30 #0 #fe #30 #30 #30 #30 #30 #30 #0
+byte #c2 #c2 #c2 #c2 #c2 #c2 #7c #0 #c2 #c2 #c2 #c2 #c2 #c2 #7c #0
+byte #c2 #c2 #64 #64 #38 #38 #10 #0 #c2 #c2 #64 #64 #38 #38 #10 #0
+byte #c2 #c2 #c2 #ca #ca #d6 #e2 #0 #c2 #c2 #c2 #ca #ca #d6 #e2 #0
+byte #c2 #c2 #c2 #7c #c2 #c2 #c2 #0 #c2 #c2 #c2 #7c #c2 #c2 #c2 #0
+byte #c2 #c2 #c2 #fe #2 #82 #7c #0 #c2 #c2 #c2 #fe #2 #82 #7c #0
+byte #fe #c #18 #30 #60 #c0 #fe #0 #fe #c #18 #30 #60 #c0 #fe #0
+byte #c0 #c0 #c0 #c0 #c0 #0 #c0 #0 #c0 #c0 #c0 #c0 #c0 #0 #c0 #0
+byte #0 #78 #84 #b4 #b8 #82 #7c #0 #0 #78 #84 #b4 #b8 #82 #7c #0
+byte #0 #44 #fe #44 #44 #fe #44 #0 #0 #44 #fe #44 #44 #fe #44 #0
+byte #7c #d2 #d0 #7c #12 #d2 #7c #0 #7c #d2 #d0 #7c #12 #d2 #7c #0
+byte #c2 #c4 #8 #10 #20 #46 #86 #0 #c2 #c4 #8 #10 #20 #46 #86 #0
+byte #0 #20 #50 #88 #0 #0 #0 #0 #0 #20 #50 #88 #0 #0 #0 #0
+byte #30 #50 #20 #50 #8a #84 #7a #0 #30 #50 #20 #50 #8a #84 #7a #0
+byte #0 #0 #10 #7c #28 #0 #0 #0 #0 #0 #10 #7c #28 #0 #0 #0
+byte #60 #c0 #c0 #c0 #c0 #c0 #60 #0 #60 #c0 #c0 #c0 #c0 #c0 #60 #0
+byte #c0 #60 #60 #60 #60 #60 #c0 #0 #c0 #60 #60 #60 #60 #60 #c0 #0
+byte #0 #0 #0 #f8 #f8 #0 #0 #0 #0 #0 #0 #f8 #f8 #0 #0 #0
+byte #0 #0 #0 #0 #0 #0 #fe #0 #0 #0 #0 #0 #0 #0 #fe #0
+byte #0 #10 #10 #7c #10 #10 #0 #0 #0 #10 #10 #7c #10 #10 #0 #0
+byte #0 #0 #7c #0 #7c #0 #0 #0 #0 #0 #7c #0 #7c #0 #0 #0
+byte #c0 #60 #30 #18 #30 #60 #c0 #0 #c0 #60 #30 #18 #30 #60 #c0 #0
+byte #18 #30 #60 #c0 #60 #30 #18 #0 #18 #30 #60 #c0 #60 #30 #18 #0
+byte #c0 #c0 #0 #0 #0 #c0 #c0 #0 #c0 #c0 #0 #0 #0 #c0 #c0 #0
+byte #c0 #c0 #0 #0 #0 #c0 #80 #0 #c0 #c0 #0 #0 #0 #c0 #80 #0
+byte #0 #0 #d8 #48 #0 #0 #0 #0 #0 #0 #d8 #48 #0 #0 #0 #0
+byte #0 #0 #c0 #40 #0 #0 #0 #0 #0 #0 #c0 #40 #0 #0 #0 #0
+byte #7c #fe #c6 #6 #3c #0 #38 #0 #7c #fe #c6 #6 #3c #0 #38 #0
+byte #6 #c #18 #30 #60 #c0 #80 #0 #6 #c #18 #30 #60 #c0 #80 #0
+byte #0 #64 #fc #98 #0 #0 #0 #0 #0 #64 #fc #98 #0 #0 #0 #0
+byte #ff #ff #ff #ff #ff #ff #ff #ff #ff #ff #ff #ff #ff #ff #ff #ff
+byte #aa #55 #aa #55 #aa #55 #aa #55 #aa #55 #aa #55 #aa #55 #aa #55
+byte #ff #fe #fc #f8 #f0 #e0 #c0 #80 #ff #fe #fc #f8 #f0 #e0 #c0 #80
+byte #ff #7f #3f #1f #f #7 #3 #1 #ff #7f #3f #1f #f #7 #3 #1
+byte #80 #c0 #e0 #f0 #f8 #fc #fe #ff #80 #c0 #e0 #f0 #f8 #fc #fe #ff
+byte #ff #7f #3f #1f #f #7 #3 #1 #ff #7f #3f #1f #f #7 #3 #1
+byte #55 #aa #54 #a8 #50 #a0 #40 #80 #55 #aa #54 #a8 #50 #a0 #40 #80
+byte #aa #55 #2a #15 #a #5 #2 #1 #aa #55 #2a #15 #a #5 #2 #1
+byte #80 #40 #a0 #50 #a8 #54 #aa #55 #80 #40 #a0 #50 #a8 #54 #aa #55
+byte #aa #55 #2a #15 #a #5 #2 #1 #aa #55 #2a #15 #a #5 #2 #1
+byte #3c #7e #ff #ff #ff #ff #7e #3c #3c #7e #ff #ff #ff #ff #7e #3c
+byte #3c #42 #81 #81 #81 #81 #42 #3c #3c #42 #81 #81 #81 #81 #42 #3c
+byte #3c #56 #ab #d5 #ab #d5 #6a #3c #3c #56 #ab #d5 #ab #d5 #6a #3c
+byte #0 #42 #42 #42 #0 #42 #3c #0 #0 #42 #42 #42 #0 #42 #3c #0
+byte #0 #42 #42 #42 #0 #3c #42 #0 #0 #42 #42 #42 #0 #3c #42 #0
